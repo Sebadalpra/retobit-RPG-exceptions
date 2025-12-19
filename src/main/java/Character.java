@@ -20,6 +20,15 @@ public abstract class Character implements Combatant {
         }
     }
 
+    public void validateTarget(Character target) {
+        if(target == null ) {
+            throw new InvalidTargetException();
+        }
+        else if (!target.isAlive()) {
+            throw new CharacterAlreadyDeadException(target.name + " ya está muerto");
+        }
+    }
+
     @Override
     public boolean isAlive() {
         return this.health > 0;
